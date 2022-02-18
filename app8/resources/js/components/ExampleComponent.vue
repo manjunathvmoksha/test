@@ -51,7 +51,7 @@ export default {
                         pip: false,
                         audio: true,
                         video: true,
-                        maxLength: 5,
+                        maxLength: 3,
                         debug: true
                     }
                 }
@@ -107,7 +107,8 @@ export default {
             this.submitText = "Uploading "+data.name;
             console.log('uploading recording:', data.name);
             this.player.record().stopDevice();
-            fetch(this.uploadUrl, {
+            // console.log(uploadUrl);
+            fetch('http://127.0.0.1:8000/', {
                 method: 'POST',
                 body: formData,
                 headers: {

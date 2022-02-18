@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\http\Controllers\VideoRecordingController;
+use App\Http\Controllers\VideoRecordingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/', 'VideoRecordingController@store')->name('video');
-
+// Route::post('/', 'VideoRecordingController@store')->name('video');
+Route::post('/', [VideoRecordingController::class, 'store'])->name('video');

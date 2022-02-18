@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use ProtoneMidea\laravelFFMpeg\support\FFMpeg;
+// use ProtoneMidea\laravelFFMpeg\support\FFMpeg;
+use FFMpeg;
 
 class VideoRecordingController extends Controller
 {
@@ -16,16 +17,16 @@ class VideoRecordingController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request);
         $file = tap($request->file('video'))->store('videos');
-        $filename = pathinfo($file->hasName(), PATHINFO_FILENAME);
-        // dd($filename);
+        $filename = pathinfo($file->hashName(), PATHINFO_FILENAME);
 
-        dd($filename);
-        FFMpeg::fromDisk("Local")
-        ->open("videos/".$file->hasName())
+        // dd($filename);
+        FFMpeg::fromDisk("local")
+        ->open("videos/".$file->hashName())
         ->export()
-        ->toDisk()("Local")
-        ->inFormat(new \FFMpeg\Format\Video\x264('libm3lane', 'libx264'))
+        ->toDisk('local')
+        ->inFormat(new \FFMpeg\Format\Video\x264('libmp3lame', 'libx264'))
         ->save('converted_videos/'.$filename.'.mp4');
         
         return response()->json([
