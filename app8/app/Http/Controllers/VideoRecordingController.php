@@ -15,9 +15,10 @@ class VideoRecordingController extends Controller
         // return view('video');
     }
 
-    public function store(){
+    public function store(Request $request){
         $file = tap($request->file('video'))->store('videos');
         $filename = pathinfo($file->hasName(), PATHINFO_FILENAME);
+        // dd($filename);
 
         dd($filename);
         FFMpeg::fromDisk("Local")

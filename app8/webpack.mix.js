@@ -32,3 +32,5 @@ mix.webpackConfig( webpack => {
         ]
     }
 })
+
+mix.disableNotifications();
